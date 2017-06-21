@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>scope/dom/event challenges</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- <script type="text/javascript" src="scope_dom_event.js"></script> -->
+</head>
+
+<body>
+  <div>
+    <h1>1. High School Debate Club</h1> <!--arguing buttons-->
+    <h1 id="debate">Fight!</h1>
+    <button id="textPrinter" onclick="return argument1(event)">House</button>
+    <button id="textChanger" onclick="return argument2(event)">Senate</button>
+  </div>
+
+  <script>
+    function argument1(event) {
+      if (true) {
+        debate.innerText = 'I\'m right!'
+      }
+    }
+
+    function argument2(event) {
+      if (true) {
+        debate.innerText = 'No, I\'m right!'
+      }
+    }
+  </script>
+
+  <div>
+    <h1 id="hover">2. Don't hover over me.</h1> <!--terrible, awful, obnoxious hovering text-->
+  </div>
+  <script>
+  var hover = document.querySelector('#hover');
+
+  hover.onmouseover = function(){
+    alert('Hey, I told you not to hover over me!');
+  }
+  </script>
+
+  <h1 id="monitor">3. Big Brother</h1> <!--listen for keypress-->
+  <input id="keystroke">
+  <script>
+    keystroke.onkeypress = function() {
+      alert('I\'m watching you...')
+    };
+  </script>
+
+  <h1>4. Input Form</h1> <!--submission form-->
+  <form onsubmit="return validForm(event)">
+    <p>Username: <input id="username" type="text" name="Username"></p>
+    <p>Email: <input id="email" type="text" name="Email"></p>
+    <p>Password: <input id="password" type="text" name="Password"></p>
+    <p><input type="submit" name="Submit"></p>
+  </form>
+  <script>
+    var passwordCheck = document.querySelector('#password');
+    var username = document.querySelector('#username');
+    var heading = document.querySelector('#heading');
+    var input = document.querySelector('#input');
+
+    function validForm(event) {
+      if (passwordCheck.value != 12345678) {
+        alert('Incorrect password!');
+      } else if (passwordCheck.value == 12345678) {
+        alert('Correct password!');
+      }
+      if (!/\d/.test(username.value)) {
+        alert('Username must contain at least one number.');
+      }
+    }
+  </script>
+</body>
+
+</html>
